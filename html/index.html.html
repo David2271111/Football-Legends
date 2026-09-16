@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Hall of Fame | Pantheon of Legends</title>
+    <!-- Premium Web Fonts -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-main: #040408;
+            --bg-card: rgba(255, 255, 255, 0.02);
+            --border-glow: rgba(255, 255, 255, 0.06);
+            --text-white: #ffffff;
+            --text-gray: #a1a1aa;
+            --gold-accent: #f59e0b;
+            --gold-gradient: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-white);
+            line-height: 1.7;
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(217, 119, 6, 0.04) 0%, transparent 40%),
+                radial-gradient(circle at 90% 50%, rgba(157, 78, 221, 0.03) 0%, transparent 40%),
+                radial-gradient(circle at 30% 90%, rgba(0, 242, 254, 0.03) 0%, transparent 50%);
+        }
+
+        /* Header Navigation */
+        header {
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            border-bottom: 1px solid var(--border-glow);
+        }
+
+        header h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: var(--text-gray);
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Container Grid Setup */
+        .wrapper {
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 5rem;
+        }
+
+        /* Player Profile Blocks */
+        .player-profile {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 4rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            padding: 3.5rem;
+            border-radius: 32px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+            transition: border-color 0.4s ease, transform 0.4s ease;
+        }
+
+        .player-profile:hover {
+            border-color: rgba(251, 191, 36, 0.15);
+            transform: translateY(-3px);
+        }
+
+        /* Image Display Frame */
+        .portrait-frame {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            height: 520px;
+            border: 1px solid rgba(255,255,255,0.04);
+            background: #0d0d15;
+        }
+
+        .portrait-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            transition: transform 0.6s ease;
+        }
+
+        .player-profile:hover .portrait-frame img {
+            transform: scale(1.04);
+        }
+
+        /* Identity Overlay Badge */
+        .squad-badge {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            background: rgba(4, 4, 8, 0.85);
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border: 1px solid rgba(255,255,255,0.08);
+            backdrop-filter: blur(8px);
+        }
+
+        /* Text Content & Biography Style */
+        .biography-box h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 3rem;
+            letter-spacing: -1.5px;
+            margin-bottom: 0.4rem;
+            line-height: 1.1;
+        }
+
+        .team-title {
+            color: var(--gold-accent);
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .bio-body p {
+            color: var(--text-gray);
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        /* Achievements Row */
+        .stats-ribbon {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+            border-top: 1px solid var(--border-glow);
+            padding-top: 2rem;
+        }
+
+        .stat-node {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            padding: 1.2rem;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .stat-val {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            color: #ffffff;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-lbl {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 0.3rem;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .player-profile {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                padding: 2.5rem;
+            }
+            .portrait-frame {
+                height: 440px;
+            }
+            header h1 {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>The Pantheon of Football</h1>
+        <p>A multi-generational biographical deep dive documenting the absolute legends, tactical masterminds, and dynamic architects who defined football's global supremacy.</p>
+    </header>
+
+    <div class="wrapper">
+
+        <!-- 1. LIONEL MESSI -->
+        <section class="player-profile">
+            <div class="portrait-frame">
+                <img src="messi.jpg" alt="Lionel Messi">
+                <div class="squad-badge">Playmaker</div>
+            </div>
+            <div class="biography-box">
+                <h2>Lionel Messi</h2>
+                <span class="team-title">Inter Miami CF // Argentina</span>
+                <div class="bio-body">
+                    <p>Lionel Andrés Messi, born on June 24, 1987, in Rosario, Argentina, is universally recognized as one of the greatest football players in the history of mankind. Diagnosed with a growth hormone deficiency as a child, his journey into professional sports was marked by early adversity. His immense raw potential caught the attention of FC Barcelona, who famously agreed to pay for his medical treatments if he relocated to Spain. Joining the legendary La Masia academy, Messi scaled through the youth ranks at a breakneck pace, making his competitive senior debut in 2004 at the tender age of 17.</p>
+                    <p>Over the course of the next seventeen years, Messi transformed FC Barcelona into a relentless global juggernaut. Operating with an impossibly low center of gravity, mesmerizing dribbling style, and elite football intelligence, he completely redefined the parameters of modern attacking play. His record-breaking synergy with managers like Pep Guardiola unlocked new structural paradigms on the pitch. Messi led Barcelona to a stunning haul of 10 La Liga titles, 7 Copa del Rey trophies, and 4 legendary UEFA Champions League crowns, establishing a golden age of football dominance.</p>
+                    <p>Beyond his club triumphs, Messi's legacy is deeply intertwined with the Argentina national squad. After facing painful heartbreaks in multiple international finals, he engineered a historic late-career renaissance. He lifted the Copa América in 2021 before achieving his ultimate destiny at the FIFA World Cup in Qatar, where he guided Argentina to world glory in one of the greatest sporting spectacles ever recorded. Transitioning to Inter Miami in Major League Soccer, Messi continues to amaze fans globally, leaving behind a permanent cultural imprint on the global game.</p>
+                </div>
+                <div class="stats-ribbon">
+                    <div class="stat-node"><span class="stat-val">8</span><span class="stat-lbl">Ballon d'Or</span></div>
+                    <div class="stat-node"><span class="stat-val">1</span><span class="stat-lbl">World Cup</span></div>
+                    <div class="stat-node"><span class="stat-val">4</span><span class="stat-lbl">UCL Titles</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. CRISTIANO RONALDO -->
+        <section class="player-profile">
+            <div class="portrait-frame">
+                <img src="ronaldo.jpg" alt="Cristiano Ronaldo">
+                <div class="squad-badge">Striker</div>
+            </div>
+            <div class="biography-box">
+                <h2>Cristiano Ronaldo</h2>
+                <span class="team-title">Al Nassr FC // Portugal</span>
+                <div class="bio-body">
